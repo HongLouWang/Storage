@@ -1,0 +1,40 @@
+$PBExportHeader$gf_getip.srf
+global type gf_getip from function_object
+end type
+
+forward prototypes
+global function string gf_getip (integer name_ip)
+end prototypes
+
+global function string gf_getip (integer name_ip);s_wsadata l_WSAData 
+string ls_HostName = space(128) 
+string ls_IpAddress 
+int li_version = 257 
+blob{4} lb_hostaddress 
+
+
+IF wsastartup ( li_version, l_WSAData ) = 0 THEN 
+
+	IF gethostname ( ls_HostName, len(ls_HostName) ) < 0 THEN 
+		messagebox("GetHostName",WSAGetLastError()) 
+	ELSE 
+		GetHost(ls_HostName, lb_HostAddress) 
+		ls_IpAddress = string(asc(string(blobmid(lb_HostAddress,1,1))),"000") + "." 
+		ls_IpAddress += string(asc(string(blobmid(lb_HostAddress,2,1))),"000") + "." 
+		ls_IpAddress += string(asc(string(blobmid(lb_HostAddress,3,1))),"000") + "." 
+		ls_IpAddress += string(asc(string(blobmid(lb_HostAddress,4,1))),"000") 
+	END IF 
+		WSACleanup() 
+	ELSE 
+	messagebox("GetHostName",WSAGetLastError()) 
+END IF 
+
+if name_ip=1 then 
+	return ls_hostname 
+else 
+	return ls_ipaddress 
+end if
+	
+
+end function
+

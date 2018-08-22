@@ -1,0 +1,13 @@
+$PBExportHeader$gf_getservertime.srf
+global type gf_getservertime from function_object
+end type
+
+forward prototypes
+global function datetime gf_getservertime ()
+end prototypes
+
+global function datetime gf_getservertime ();Datetime Stime
+Select now() into :Stime from IP_data;
+return Stime
+end function
+

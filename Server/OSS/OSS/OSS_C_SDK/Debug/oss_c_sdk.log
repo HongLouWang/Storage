@@ -1,0 +1,26 @@
+﻿  aos_buf.c
+  aos_crc64.c
+  aos_fstack.c
+  aos_http_io.c
+  aos_log.c
+  aos_status.c
+  aos_string.c
+  aos_transport.c
+  aos_util.c
+  oss_auth.c
+  oss_bucket.c
+  oss_define.c
+  oss_live.c
+  oss_multipart.c
+  oss_object.c
+  oss_resumable.c
+  oss_util.c
+  oss_xml.c
+  Generating Code...
+libaprutil-1.lib(libaprutil-1.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in libapr-1.lib(libapr-1.dll); second definition ignored
+libaprutil-1.lib(libaprutil-1.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+curl.lib(libcurl.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in libapr-1.lib(libapr-1.dll); second definition ignored
+curl.lib(libcurl.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+mxml1.lib(MXML1.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in libapr-1.lib(libapr-1.dll); second definition ignored
+mxml1.lib(MXML1.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+  oss_c_sdk.vcxproj -> E:\Work\Storage\Server\OSS\Aliyun_OSS_C_SDK_3.5.0\Debug\oss_c_sdk.lib

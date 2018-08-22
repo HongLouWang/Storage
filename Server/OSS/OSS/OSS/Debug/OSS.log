@@ -1,0 +1,39 @@
+﻿  stdafx.cpp
+  inti_multipart_upload.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+e:\work\storage\server\oss\oss\oss\inti_multipart_upload.cpp(12): error C2440: 'initializing': cannot convert from 'int' to 'oss_request_options_t'
+  e:\work\storage\server\oss\oss\oss\inti_multipart_upload.cpp(12): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+e:\work\storage\server\oss\oss\oss\inti_multipart_upload.cpp(14): error C2040: 'upload_file': 'oss_upload_file_t *' differs in levels of indirection from 'oss_request_options_t'
+  multipart_upload_file.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+e:\work\storage\server\oss\oss\oss\multipart_upload_file.cpp(52): error C2660: 'GetFileSize': function does not take 1 arguments
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\um\fileapi.h(553): note: see declaration of 'GetFileSize'
+  oss_append.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+e:\work\storage\server\oss\oss\oss\oss_append.cpp(13): error C2440: 'initializing': cannot convert from 'const char [50]' to 'char *'
+  e:\work\storage\server\oss\oss\oss\oss_append.cpp(13): note: Conversion from string literal loses const qualifier (see /Zc:strictStrings)
+  oss_init.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+  oss_input.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+e:\work\storage\server\oss\oss\oss\oss_input.cpp(12): error C2440: 'initializing': cannot convert from 'const char [49]' to 'char *'
+  e:\work\storage\server\oss\oss\oss\oss_input.cpp(12): note: Conversion from string literal loses const qualifier (see /Zc:strictStrings)
+e:\work\storage\server\oss\oss\oss\oss_input.cpp(21): error C2664: 'size_t strlen(const char *)': cannot convert argument 1 from 'char' to 'const char *'
+  e:\work\storage\server\oss\oss\oss\oss_input.cpp(21): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+e:\work\storage\server\oss\oss\oss\oss_input.cpp(22): error C2664: 'size_t strlen(const char *)': cannot convert argument 1 from 'char' to 'const char *'
+  e:\work\storage\server\oss\oss\oss\oss_input.cpp(22): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast
+  oss_new_bucket.cpp
+e:\work\storage\server\oss\oss\oss\config.h(6): warning C4081: expected 'identifier'; found '('
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2059: syntax error: 'string'
+e:\work\storage\server\oss\oss\includes\include\apr\apr_allocator.h(60): error C2238: unexpected token(s) preceding ';'
+  Generating Code...
