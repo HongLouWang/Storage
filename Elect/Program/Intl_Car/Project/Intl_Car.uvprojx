@@ -536,6 +536,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\stm32f10x_it.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_wifi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\bsp_wifi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -555,6 +560,11 @@
               <FileName>bsp_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Comm\I2C\bsp_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Comm\USART\bsp_usart.c</FilePath>
             </File>
           </Files>
         </Group>
