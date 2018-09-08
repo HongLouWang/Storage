@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS;..\..\Libraries\FWlib\inc;..\..\User;..\..\User\APP;..\..\User\BSP;..\..\User\BSP\led;..\..\User\uC-CPU;..\..\User\uC-CPU\ARM-Cortex-M3\RealView;..\..\User\uC-LIB;..\..\User\uCOS-III\Source;..\..\User\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;..\..\User\Comm\I2C;..\..\User\Comm\USART;..\..\User\Comm</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS;..\..\Libraries\FWlib\inc;..\..\User;..\..\User\APP;..\..\User\BSP;..\..\User\BSP\led;..\..\User\uC-CPU;..\..\User\uC-CPU\ARM-Cortex-M3\RealView;..\..\User\uC-LIB;..\..\User\uCOS-III\Source;..\..\User\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;..\..\User\Comu\I2C;..\..\User\Comu\USART;..\..\User\Comm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -856,20 +856,35 @@
               <FileType>5</FileType>
               <FilePath>..\..\User\BSP\led\bsp_led.h</FilePath>
             </File>
+            <File>
+              <FileName>bsp_esp8266.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\BSP\bsp_esp8266.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Comu</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Comu\I2C\bsp_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Comu\USART\bsp_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Comm</GroupName>
           <Files>
             <File>
-              <FileName>bsp_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\Comm\I2C\bsp_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>bsp_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\Comm\USART\bsp_usart.c</FilePath>
+              <FileName>Config.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\User\Comm\Config.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -28,3 +28,5 @@ typedef enum
   GPIO_Mode_AF_OD = 0x1C,         /* 复用开漏输出 */
   GPIO_Mode_AF_PP = 0x18          /* 复用推挽输出 */
 }GPIOMode_TypeDef;
+
+

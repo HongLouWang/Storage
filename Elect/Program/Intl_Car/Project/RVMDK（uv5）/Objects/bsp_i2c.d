@@ -1,5 +1,5 @@
-.\objects\bsp_i2c.o: ..\..\User\Comm\I2C\bsp_i2c.c
-.\objects\bsp_i2c.o: ..\..\User\Comm\I2C\bsp_i2c.h
+.\objects\bsp_i2c.o: ..\..\User\Comu\I2C\bsp_i2c.c
+.\objects\bsp_i2c.o: ..\..\User\Comu\I2C\bsp_i2c.h
 .\objects\bsp_i2c.o: ..\..\Libraries\CMSIS\stm32f10x.h
 .\objects\bsp_i2c.o: ..\..\Libraries\CMSIS\core_cm3.h
 .\objects\bsp_i2c.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

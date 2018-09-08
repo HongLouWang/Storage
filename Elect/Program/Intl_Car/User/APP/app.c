@@ -51,9 +51,7 @@
 */
 
 static  OS_TCB   AppTaskStartTCB;
-static  OS_TCB	 AppTaskLed1TCB;
-static  OS_TCB	 AppTaskLed2TCB;
-static  OS_TCB	 AppTaskLed3TCB;
+static  OS_TCB	 AppTaskTimeClock;
 
 
 /*
@@ -63,9 +61,8 @@ static  OS_TCB	 AppTaskLed3TCB;
 */
 
 static  CPU_STK  AppTaskStartStk[APP_TASK_START_STK_SIZE];
-static  CPU_STK	 AppTaskLed1Stk[APP_TASK_LED1_STK_SIZE];
-static  CPU_STK	 AppTaskLed2Stk[APP_TASK_LED2_STK_SIZE];
-static  CPU_STK	 AppTaskLed3Stk[APP_TASK_LED3_STK_SIZE];
+static  CPU_STK	 APP_TASK_CLOCK_STK[APP_TASK_CLOCK];
+
 
 
 /*
@@ -75,10 +72,9 @@ static  CPU_STK	 AppTaskLed3Stk[APP_TASK_LED3_STK_SIZE];
 */
 
 
-static  void  AppTaskStart  (void *p_arg);
-static  void  AppTaskLed1		(void * p_arg);
-static  void  AppTaskLed2		(void * p_arg);
-static  void  AppTaskLed3		(void * p_arg);
+static  void  AppTaskStart  	(void *p_arg);
+
+static	void  AppClock				(void * p_arg);
 
 /*
 *********************************************************************************************************
@@ -105,8 +101,8 @@ int  main (void)
                  (void       *) 0,
                  (OS_PRIO     ) APP_TASK_START_PRIO,
                  (CPU_STK    *)&AppTaskStartStk[0],
-                 (CPU_STK_SIZE) APP_TASK_START_STK_SIZE / 10,
-                 (CPU_STK_SIZE) APP_TASK_START_STK_SIZE,
+                 (CPU_STK_SIZE) APP_TASK_CLOCK_STK_SIZE / 10,
+                 (CPU_STK_SIZE) APP_TASK_CLOCK_STK_SIZE,
                  (OS_MSG_QTY  ) 5u,
                  (OS_TICK     ) 0u,
                  (void       *) 0,
@@ -157,102 +153,32 @@ static  void  AppTaskStart (void *p_arg)
 
     CPU_IntDisMeasMaxCurReset();
 
-		OSTaskCreate((OS_TCB				*)&AppTaskLed1TCB,
-								(CPU_CHAR			*)"App Task Led1",
-								(OS_TASK_PTR	 ) AppTaskLed1,
-								(void					*)0,
-								(OS_PRIO			 ) APP_TASK_LED1_PRIO,
-								(CPU_STK			*)&AppTaskLed1Stk[0],
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE	/10,
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE,
-								(OS_MSG_QTY		 ) 5u,
-								(OS_TICK			 ) 0u,
-								(void					*) 0,
-								(OS_OPT				 ) (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
-								(OS_ERR				*)&err);
+//Program Start
+			
+	OSTaskCreate((OS_TCB			  *)&AppTaskTimeClock,
+							 (CPU_CHAR			*)"CLOCK",
+							 (OS_TASK_PTR		 ) AppClock,
+							 (void					*)1,
+							 (OS_PRIO				 )APP_TASK_CLOCK,
+							 (CPU_STK    		*)&APP_TASK_CLOCK_STK[0],
+							 (CPU_STK_SIZE	 ) APP_TASK_CLOCK_STK_SIZE / 10,
+							 (CPU_STK_SIZE	 ) APP_TASK_CLOCK_STK_SIZE,
+							 (OS_MSG_QTY		 ) 10,
+							 (OS_TICK				 ) 10,
+							 (void					*) 0,
+							 (OS_OPT				 ) (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
+							 (OS_ERR				*)&err);
+							 
 								
-	OSTaskCreate((OS_TCB				*)&AppTaskLed2TCB,
-								(CPU_CHAR			*)"App Task Led2",
-								(OS_TASK_PTR	 ) AppTaskLed1,
-								(void					*)0,
-								(OS_PRIO			 ) APP_TASK_LED1_PRIO,
-								(CPU_STK			*)&AppTaskLed1Stk[0],
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE	/10,
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE,
-								(OS_MSG_QTY		 ) 5u,
-								(OS_TICK			 ) 0u,
-								(void					*) 0,
-								(OS_OPT				 ) (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
-								(OS_ERR				*)&err);
-								
-	OSTaskCreate((OS_TCB				*)&AppTaskLed3TCB,
-								(CPU_CHAR			*)"App Task Led3",
-								(OS_TASK_PTR	 ) AppTaskLed1,
-								(void					*)0,
-								(OS_PRIO			 ) APP_TASK_LED1_PRIO,
-								(CPU_STK			*)&AppTaskLed1Stk[0],
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE	/10,
-								(CPU_STK_SIZE  ) APP_TASK_LED1_STK_SIZE,
-								(OS_MSG_QTY		 ) 5u,
-								(OS_TICK			 ) 0u,
-								(void					*) 0,
-								(OS_OPT				 ) (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
-								(OS_ERR				*)&err);
 								
 	OSTaskDel( & AppTaskStartTCB, & err);
 
 	
 }
 
-/*
-*********************************************************************************************************
-*																				LED1 TASK
-*********************************************************************************************************
-*/
-static void AppTaskLed1 (void * p_arg)
+static void AppClock(void * p_arg)
 {
-	OS_ERR					err;
 	
-	(void)p_arg;
-	while(DEF_TRUE)
-	{
-		macLED1_TOGGLE();
-		OSTimeDly(1000, OS_OPT_TIME_DLY, & err);
-	}
-}
-
-/*
-*********************************************************************************************************
-*																				LED2 TASK
-*********************************************************************************************************
-*/
-static void AppTaskLed2 (void * p_arg)
-{
-	OS_ERR					err;
-	
-	(void)p_arg;
-	while(DEF_TRUE)
-	{
-		macLED2_TOGGLE();
-		OSTimeDly(1000, OS_OPT_TIME_DLY, & err);
-	}
-}
-
-/*
-*********************************************************************************************************
-*																				LED3 TASK
-*********************************************************************************************************
-*/
-static void AppTaskLed3 (void * p_arg)
-{
-	OS_ERR					err;
-	
-	(void)p_arg;
-	while(DEF_TRUE)
-	{
-		macLED3_TOGGLE();
-		OSTimeDly(1000, OS_OPT_TIME_DLY, & err);
-	}
 }
 
 

@@ -1,5 +1,5 @@
-.\objects\bsp_usart.o: ..\..\User\Comm\USART\bsp_usart.c
-.\objects\bsp_usart.o: ..\..\User\Comm\USART\bsp_usart.h
+.\objects\bsp_usart.o: ..\..\User\Comu\USART\bsp_usart.c
+.\objects\bsp_usart.o: ..\..\User\Comu\USART\bsp_usart.h
 .\objects\bsp_usart.o: ..\..\Libraries\CMSIS\stm32f10x.h
 .\objects\bsp_usart.o: ..\..\Libraries\CMSIS\core_cm3.h
 .\objects\bsp_usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
