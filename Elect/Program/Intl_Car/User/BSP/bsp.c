@@ -35,6 +35,7 @@
 */
 
 #define  BSP_MODULE
+#include "Config.h"
 #include <bsp.h>
 
 

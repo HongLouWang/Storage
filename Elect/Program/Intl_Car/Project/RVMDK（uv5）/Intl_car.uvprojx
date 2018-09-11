@@ -861,6 +861,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\BSP\bsp_esp8266.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_esp8266.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\User\BSP\bsp_esp8266.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -885,6 +890,11 @@
               <FileName>Config.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\User\Comm\Config.h</FilePath>
+            </File>
+            <File>
+              <FileName>Config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Config.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -29,3 +29,10 @@
 .\objects\bsp_led.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
 .\objects\bsp_led.o: ..\..\Libraries\FWlib\inc\stm32f10x_wwdg.h
 .\objects\bsp_led.o: ..\..\Libraries\FWlib\inc\misc.h
+.\objects\bsp_led.o: ..\..\User\Comm\Config.h
+.\objects\bsp_led.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\bsp_led.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\bsp_led.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\bsp_led.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\bsp_led.o: ..\..\User\BSP\bsp_esp8266.h
+.\objects\bsp_led.o: ..\..\User\Comm\Config.h
