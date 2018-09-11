@@ -176,6 +176,37 @@ static  void  AppTaskStart (void *p_arg)
 	
 }
 
+void TmrCallback(OS_TMR *p_tmr, void *p_arg)
+{
+	CPU_INT32U				cpu_clk_freq;
+	CPU_SR_ALLOC();
+	
+	
+}
+
+static void AppTaskTmr( void * p_arg)
+{
+	OS_ERR									err;
+	OS_TMR									my_tmr;
+	
+	(void)p_arg;
+	
+	OSTmrCreate((OS_TMR				*)&my_tmr,
+							(CPU_CHAR			*)"MySoftTimer",
+							(OS_TICK			 )1,
+							(OS_TICK			 )1,
+							(OS_OPT				 )OS_OPT_TMR_PERIODIC,
+							(OS_TMR_CALLBACK_PTR)TmrCallback,
+							(void					*)"Time Over!",
+							(OS_ERR				*)err);
+							
+	OSTmrStart	((OS_TMR		*)&my_tmr,
+							 (OS_ERR		*)err);
+							
+	//ts_start = OS_TS_GET();
+	
+}
+
 static void AppClock(void * p_arg)
 {
 	

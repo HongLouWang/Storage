@@ -35,3 +35,4 @@
 .\objects\bsp_esp8266.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\bsp_esp8266.o: ..\..\User\BSP\bsp_esp8266.h
 .\objects\bsp_esp8266.o: ..\..\User\Comm\Config.h
+.\objects\bsp_esp8266.o: ..\..\User\Timer.h

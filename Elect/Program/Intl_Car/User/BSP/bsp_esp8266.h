@@ -47,7 +47,7 @@ extern struct STRUCT_USARTx_Fram
 		struct{
 			__IO u16 FramLength								:15;
 			__IO u16 FramFinishFlag						:1;
-		}Infbit;
+		}InfBit;
 		
 	};
 }	strEsp8266_Fram_Record;
@@ -57,14 +57,14 @@ extern struct STRUCT_USARTx_Fram
 #define 			macESP8266_CH_PD_PORT											GPIOD
 #define				macESP8266_CH_PD_PIN											GPIO_Pin_8
 
-#define				macESP8266_CH_RST_CLK											RCC_APV2Periph_GPIOD
-#define				macESP8266_CH_RST_PORT										GPIOD
-#define				macESP8266_CH_RST_PIN											GPIO_Pin_7
+#define				macESP8266_RST_CLK												RCC_APB2Periph_GPIOD
+#define				macESP8266_RST_PORT												GPIOD
+#define				macESP8266_RST_PIN												GPIO_Pin_7
 
-#define				macESP8266_USART_BAUD_RAT									115200
+#define				macESP8266_USART_BAUD_RATE								115200
 
-#define				macESP8266_USARTX													USART3
-#define				macESP8255_USART_APVxClock_FUN						RCC_APN1PeriphClockCmd
+#define				macESP8266_USARTx													USART3
+#define				macESP8266_USART_APBxClock_FUN						RCC_APB1PeriphClockCmd
 #define				macESP8266_USART_CLK											RCC_APB1Periph_USART3
 #define       macESP8266_USART_GPIO_APBxClock_FUN       RCC_APB2PeriphClockCmd
 #define       macESP8266_USART_GPIO_CLK                 RCC_APB2Periph_GPIOD
@@ -76,7 +76,7 @@ extern struct STRUCT_USARTx_Fram
 #define       macESP8266_USART_INT_FUN                  USART3_IRQHandler
 
 /*********************************************** ESP8266 º¯Êýºê¶¨Òå *******************************************/
-#define				macESP8266_Usart( fmt, ... )							USART_printf( macESP8266_USARTx, fmt, ##__VA_ARGS__ )
+#define       macESP8266_Usart( fmt, ... )      		    USART_printf ( macESP8266_USARTx, fmt, ##__VA_ARGS__ ) 
 #define       macPC_Usart( fmt, ... )                
 
 #define    		macESP8266_CH_ENABLE()                 		GPIO_SetBits ( macESP8266_CH_PD_PORT, macESP8266_CH_PD_PIN )
@@ -86,10 +86,15 @@ extern struct STRUCT_USARTx_Fram
 #define    		macESP8266_RST_LOW_LEVEL()             		GPIO_ResetBits ( macESP8266_RST_PORT, macESP8266_RST_PIN )
 
 static char * itoa( int value, char *string, int radix );
-
-
-
-
+static void ESP8266_GPIO_Config ( void );
+static void ESP8266_USART_Config ( void );
+static void ESP8266_USART_NVIC_Configuration ( void );
+void ESP8266_Rst( void );
+bool ESP8266_Cmd( char * cmd, char * reply1, char * reply2, u32 waittime);
+bool ESP8266_AT_Test(void);
+bool ESP8266_Net_Mode_Choose( ENUM_Net_ModeTypeDef enumMode);
+bool ESP8266_JoinAP( char * pSSID, char * pPassWord);
+bool ESP8266_Enable_MultipleId( FunctionalState enumEnUnvarnishTx);
 
 
 
