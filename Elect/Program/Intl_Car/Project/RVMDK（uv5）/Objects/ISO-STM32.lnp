@@ -28,6 +28,7 @@
 ".\objects\stm32f10x_it.o"
 ".\objects\app.o"
 ".\objects\os_app_hooks.o"
+".\objects\wifi.o"
 ".\objects\cpu_core.o"
 ".\objects\cpu_a.o"
 ".\objects\cpu_c.o"

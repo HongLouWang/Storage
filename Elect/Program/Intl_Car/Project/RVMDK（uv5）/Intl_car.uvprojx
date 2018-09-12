@@ -616,6 +616,11 @@
               <FileType>5</FileType>
               <FilePath>..\..\User\APP\os_cfg_app.h</FilePath>
             </File>
+            <File>
+              <FileName>wifi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\APP\wifi.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

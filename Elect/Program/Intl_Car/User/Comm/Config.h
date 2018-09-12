@@ -2,6 +2,7 @@
 #define	_CONFIG_H_
 
 #include "stm32f10x.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>

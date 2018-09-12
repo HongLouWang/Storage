@@ -85,6 +85,15 @@ extern struct STRUCT_USARTx_Fram
 #define     	macESP8266_RST_HIGH_LEVEL()            		GPIO_SetBits ( macESP8266_RST_PORT, macESP8266_RST_PIN )
 #define    		macESP8266_RST_LOW_LEVEL()             		GPIO_ResetBits ( macESP8266_RST_PORT, macESP8266_RST_PIN )
 
+#define				ServerIP																	"192.168.0.1"
+#define				ServerTCPPort															"6000"
+#define				ServerUDPPort															6001
+#define				ServerMySQLPort														3306
+#define				WiFi_SSID																	"EmeraldDownStorage"
+#define				WiFi_Password															"w20080811"
+
+
+
 static char * itoa( int value, char *string, int radix );
 static void ESP8266_GPIO_Config ( void );
 static void ESP8266_USART_Config ( void );
@@ -95,9 +104,14 @@ bool ESP8266_AT_Test(void);
 bool ESP8266_Net_Mode_Choose( ENUM_Net_ModeTypeDef enumMode);
 bool ESP8266_JoinAP( char * pSSID, char * pPassWord);
 bool ESP8266_Enable_MultipleId( FunctionalState enumEnUnvarnishTx);
-
-
-
+bool ESP8266_Link_Server(ENUM_NetPro_TypeDef enumE, char * ip, char * ComNum, ENUM_ID_NO_TypeDef id);
+uint8_t ESP8266_Get_LinkStatus ( void );
+uint8_t ESP8266_Get_IdLinkStatus ( void );
+uint8_t ESP8266_Inquire_ApIp(char * pApIp, uint8_t ucArrayLength);
+bool ESP8266_UnvarnishSend ( void );
+void ESP8266_ExitUnvarnishSend(void);
+bool ESP8266_SendString( FunctionalState enumEnUnvarinshTx, char * pStr, u32 ulStrLength, ENUM_ID_NO_TypeDef ucId);
+char * ESP8266_ReceiveString ( FunctionalState enumEnUnvarnishTx );
 
 #endif
 

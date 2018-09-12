@@ -438,7 +438,277 @@ bool ESP8266_Link_Server(ENUM_NetPro_TypeDef enumE, char * ip, char * ComNum, EN
 		default:
 			break;
 	}
+	
+	if(id < 5)
+	{
+		sprintf(cCmd, "AT+CIPSTART=%d,%s", id, cStr);
+	}
+	else
+	{
+		sprintf ( cCmd, "AT+CIPSTART=%s", cStr );
+	}
+	return ESP8266_Cmd ( cCmd, "OK", "ALREAY CONNECT", 4000 );
 }
+
+/*
+Function name:						ESP8267_StartOrShutServer
+Description	 :						ESP8266 Connect to outside server
+Para				 :						-enumE, Network protocol
+													-ip, Server IP
+													-ComNum, Server Port
+													-id, Server ID
+Output			 :						NONE
+Return			 :						1, Connect successfully
+													0, Connect fail
+*/
+bool ESP8267_StartOrShutServer( FunctionalState enumMode, char * pPortNum, char * pTimeOver)
+{
+	char cCmd1[120], cCmd2[120];
+	
+	if(enumMode)
+	{
+		sprintf ( cCmd1, "AT+CIPSERVER=%d,%s", 1, pPortNum );
+		
+		sprintf ( cCmd2, "AT+CIPSTO=%s", pTimeOver );
+		
+		return (ESP8266_Cmd(cCmd1, "OK", 0, 500) && ESP8266_Cmd(cCmd2, "OK", 0, 500));
+			
+	}
+	else
+	{
+		sprintf ( cCmd1, "AT+CIPSERVER=%d,%s", 0, pPortNum );
+		
+		return ESP8266_Cmd(cCmd1, "OK", 0, 500);
+	}
+}
+
+/*
+Function name:						ESP8266_Get_LinkStatus
+Description	 :						ESP8266 get connection status with server
+Para				 :						NONE
+Output			 :						NONE
+Return			 :						-2, get ip
+													-3, get connection
+													-4, lost connetion
+													-0, fail to get status
+*/
+uint8_t ESP8266_Get_LinkStatus ( void )
+{
+	if(ESP8266_Cmd("AT+CIPSTATUS", "OK", 0, 500))
+	{
+		if(strstr(strEsp8266_Fram_Record.Data_RX_BUF,"STATUS:2\r\n"))
+		{
+			return 2;
+		}
+		else if(strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "STATUS:3\r\n" ))
+		{
+			return 3;
+		}
+		else if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "STATUS:4\r\n" ))
+		{
+			return 4;	
+		}
+				
+	}
+	return 0;
+}
+
+/*
+ * 函数名：ESP8266_Get_IdLinkStatus
+ * 描述  ：获取 WF-ESP8266 的端口（Id）连接状态，较适合多端口时使用
+ * 输入  ：无
+ * 返回  : 端口（Id）的连接状态，低5位为有效位，分别对应Id5~0，某位若置1表该Id建立了连接，若被清0表该Id未建立连接
+ * 调用  ：被外部调用
+ */
+uint8_t ESP8266_Get_IdLinkStatus ( void )
+{
+	uint8_t ucIdLinkStatus = 0x00;
+	
+	
+	if ( ESP8266_Cmd ( "AT+CIPSTATUS", "OK", 0, 500 ) )
+	{
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+CIPSTATUS:0," ) )
+			ucIdLinkStatus |= 0x01;
+		else 
+			ucIdLinkStatus &= ~ 0x01;
+		
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+CIPSTATUS:1," ) )
+			ucIdLinkStatus |= 0x02;
+		else 
+			ucIdLinkStatus &= ~ 0x02;
+		
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+CIPSTATUS:2," ) )
+			ucIdLinkStatus |= 0x04;
+		else 
+			ucIdLinkStatus &= ~ 0x04;
+		
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+CIPSTATUS:3," ) )
+			ucIdLinkStatus |= 0x08;
+		else 
+			ucIdLinkStatus &= ~ 0x08;
+		
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+CIPSTATUS:4," ) )
+			ucIdLinkStatus |= 0x10;
+		else 
+			ucIdLinkStatus &= ~ 0x10;	
+
+	}
+	return ucIdLinkStatus;
+}
+
+/*
+Function name:						ESP8266_Inquire_ApIp
+Description	 :						ESP8266 Inquire IP of AP
+Para				 :						-pApIp, IP address
+													-ucArrayLength, Length of IP
+Output			 :						NONE
+Return			 :					  -0, fail to get IP
+													-1, get IP successful
+*/
+uint8_t ESP8266_Inquire_ApIp(char * pApIp, uint8_t ucArrayLength)
+{
+	char uc;
+	char * pCh;
+	
+	ESP8266_Cmd("AT+CIFSR","OK", 0, 500);
+	
+	pCh = strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "APIP,\"" );
+	
+		if ( pCh )
+		pCh += 6;
+	
+	else
+		return 0;
+	
+	for ( uc = 0; uc < ucArrayLength; uc ++ )
+	{
+		pApIp [ uc ] = * ( pCh + uc);
+		
+		if ( pApIp [ uc ] == '\"' )
+		{
+			pApIp [ uc ] = '\0';
+			break;
+		}
+		
+	}
+	
+	return 1;
+}
+
+/*
+Function name:						ESP8266_UnvarnishSend
+Description	 :						ESP8266 enable UnvarinshTx
+Para				 :						NONE
+Output			 :						NONE
+Return			 :					  -1, Enable successful
+													-0, fail to Enable
+													
+*/
+bool ESP8266_UnvarnishSend ( void )
+{
+	if(!ESP8266_Cmd("AT+CIPMODE=1","OK", 0, 500))
+	{
+		return false;
+	}
+	return  ESP8266_Cmd ( "AT+CIPSEND", "OK", ">", 1000 );
+}
+
+/*
+Function name:						ESP8266_ExitUnvarnishSend
+Description	 :						ESP8266 disable UnvarinshTx
+Para				 :						NONE
+Output			 :						NONE
+Return			 :					  NONE			
+*/
+void ESP8266_ExitUnvarnishSend(void)
+{
+	Delay(1000);
+	macESP8266_Usart ( "+++" );
+	Delay(500);
+}
+
+/*
+Function name:						ESP8266_SendString
+Description	 :						ESP8266 Send String
+Para				 :						-enumEnUnvarinshTx, enable UnvarinshTx or not
+													-p, vector of the string need to be send
+													-ulStrLength, Length of the String need to be send
+													-ucId, Server Id
+Output			 :						NONE
+Return			 :					  NONE			
+*/
+bool ESP8266_SendString( FunctionalState enumEnUnvarinshTx, char * pStr, u32 ulStrLength, ENUM_ID_NO_TypeDef ucId)
+{
+	char cStr[20];
+	bool bRet = false;
+	
+	if(enumEnUnvarinshTx)
+	{
+		macESP8266_Usart("%s", pStr);
+		bRet = true;
+	}
+	else
+	{
+		if(ucId < 5)
+		{
+			sprintf ( cStr, "AT+CIPSEND=%d,%d", ucId, ulStrLength + 2 );
+		}
+		else
+		{
+			sprintf ( cStr, "AT+CIPSEND=%d", ulStrLength + 2 );
+		}
+		
+		ESP8266_Cmd ( cStr, "> ", 0, 1000 );
+
+		bRet = ESP8266_Cmd ( pStr, "SEND OK", 0, 1000 );
+	}
+	
+	return bRet;
+	
+}
+
+/*
+Function name:						ESP8266_ReceiveString
+Description	 :						ESP8266 Receive String
+Para				 :						-enumEnUnvarinshTx, enable UnvarinshTx or not
+Output			 :						vector of the string received
+Return			 :					  NONE			
+*/
+char * ESP8266_ReceiveString ( FunctionalState enumEnUnvarnishTx )
+{
+	char * pRecStr = 0;
+	
+	
+	strEsp8266_Fram_Record .InfBit .FramLength = 0;
+	strEsp8266_Fram_Record .InfBit .FramFinishFlag = 0;
+	
+	while ( ! strEsp8266_Fram_Record .InfBit .FramFinishFlag );
+	strEsp8266_Fram_Record .Data_RX_BUF [ strEsp8266_Fram_Record .InfBit .FramLength ] = '\0';
+	
+	if ( enumEnUnvarnishTx )
+		pRecStr = strEsp8266_Fram_Record .Data_RX_BUF;
+	else 
+	{
+		if ( strstr ( strEsp8266_Fram_Record .Data_RX_BUF, "+IPD" ) )
+			pRecStr = strEsp8266_Fram_Record .Data_RX_BUF;
+
+	}
+	return pRecStr;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
