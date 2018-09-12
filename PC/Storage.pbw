@@ -7,5 +7,5 @@ Save Format v3.0(19990112)
  2 "Zhengzhou\\zhengzhou.pbt";
  3 "Maintenance\\maintenance.pbt";
 @end;
-DefaultTarget "Maintenance\\maintenance.pbt";
-DefaultRemoteTarget "Maintenance\\maintenance.pbt";
+DefaultTarget "Pullman\\pullman.pbt";
+DefaultRemoteTarget "Pullman\\pullman.pbt";
