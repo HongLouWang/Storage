@@ -37,3 +37,4 @@
 .\objects\bsp_led.o: ..\..\User\BSP\bsp_esp8266.h
 .\objects\bsp_led.o: ..\..\User\Comm\Config.h
 .\objects\bsp_led.o: ..\..\User\Timer.h
+.\objects\bsp_led.o: ..\..\User\APP\wifi.h

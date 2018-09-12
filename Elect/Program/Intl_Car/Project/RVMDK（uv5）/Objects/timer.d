@@ -36,6 +36,7 @@
 .\objects\timer.o: ..\..\User\BSP\bsp_esp8266.h
 .\objects\timer.o: ..\..\User\Comm\Config.h
 .\objects\timer.o: ..\..\User\Timer.h
+.\objects\timer.o: ..\..\User\APP\wifi.h
 .\objects\timer.o: ..\..\User\Timer.h
 .\objects\timer.o: ..\..\User\uCOS-III\Source\os.h
 .\objects\timer.o: ..\..\User\APP\os_cfg.h

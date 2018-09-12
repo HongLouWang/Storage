@@ -85,16 +85,13 @@ extern struct STRUCT_USARTx_Fram
 #define     	macESP8266_RST_HIGH_LEVEL()            		GPIO_SetBits ( macESP8266_RST_PORT, macESP8266_RST_PIN )
 #define    		macESP8266_RST_LOW_LEVEL()             		GPIO_ResetBits ( macESP8266_RST_PORT, macESP8266_RST_PIN )
 
-#define				ServerIP																	"192.168.0.1"
-#define				ServerTCPPort															"6000"
-#define				ServerUDPPort															6001
-#define				ServerMySQLPort														3306
-#define				WiFi_SSID																	"EmeraldDownStorage"
-#define				WiFi_Password															"w20080811"
 
 
 
+
+void USART_printf(USART_TypeDef * USARTx, char * Data, ... );
 static char * itoa( int value, char *string, int radix );
+void ESP8266_Init ( void );
 static void ESP8266_GPIO_Config ( void );
 static void ESP8266_USART_Config ( void );
 static void ESP8266_USART_NVIC_Configuration ( void );

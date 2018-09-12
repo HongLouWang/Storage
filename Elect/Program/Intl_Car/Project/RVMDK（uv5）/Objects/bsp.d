@@ -36,6 +36,7 @@
 .\objects\bsp.o: ..\..\User\BSP\bsp_esp8266.h
 .\objects\bsp.o: ..\..\User\Comm\Config.h
 .\objects\bsp.o: ..\..\User\Timer.h
+.\objects\bsp.o: ..\..\User\APP\wifi.h
 .\objects\bsp.o: ..\..\User\BSP\bsp.h
 .\objects\bsp.o: ..\..\User\uC-CPU\ARM-Cortex-M3\RealView\cpu.h
 .\objects\bsp.o: ..\..\User\uC-CPU\cpu_def.h

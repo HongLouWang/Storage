@@ -36,3 +36,4 @@
 .\objects\config.o: ..\..\User\BSP\bsp_esp8266.h
 .\objects\config.o: ..\..\User\Comm\Config.h
 .\objects\config.o: ..\..\User\Timer.h
+.\objects\config.o: ..\..\User\APP\wifi.h
