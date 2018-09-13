@@ -53,13 +53,7 @@ int Init_1602(void)
 	return 1;
 }
 
-void LCD1602_SendBit(u8 type,u8 buf)
-{
-	lCD_GPIO->BSRR |= (buf<<8) & 0xff00;
-	lCD_GPIO->BRR  |= ((~buf)<<8) & 0xff00;	
-}
-
-void LCD1602_Cmd(u8 type,u8 buf)
+void LCD1602_SendDate(u8 buf)
 {
 	GPIO_SetBits(LCD_1602_RS_PORT, LCD_1602_RS_PIN);
 	GPIO_SetBits(LCD_1602_RW_PORT, LCD_1602_RW_PIN);
@@ -67,13 +61,44 @@ void LCD1602_Cmd(u8 type,u8 buf)
 	GPIO_ReadOutputDataBit(LCD_1602_EN_PORT, LCD_1602_EN_PIN);
 	Delay(400);
 	
-	lCD_GPIO->BSRR |= (buf<<8) & 0xff00;
-	lCD_GPIO->BRR  |= ((~buf)<<8) & 0xff00;	
+	LCD_GPIO->BSRR |= (buf<<8) & 0xff00;
+	LCD_GPIO->BRR  |= ((~buf)<<8) & 0xff00;	
 	
 	GPIO_ReadOutputDataBit(LCD_1602_RS_PORT, LCD_1602_RS_PIN);
 	GPIO_ReadOutputDataBit(LCD_1602_RW_PORT, LCD_1602_RW_PIN);
 	Delay(400);
 	GPIO_ResetBits(LCD_1602_EN_PORT, LCD_1602_EN_PIN);
+}
+
+void LCD1602_Cmd(u8 buf)
+{
+	GPIO_ReadOutputDataBit(LCD_1602_RS_PORT, LCD_1602_RS_PIN);
+	GPIO_SetBits(LCD_1602_RW_PORT, LCD_1602_RW_PIN);
+	Delay(400);
+	GPIO_ReadOutputDataBit(LCD_1602_EN_PORT, LCD_1602_EN_PIN);
+	Delay(400);
 	
+	LCD_GPIO->BSRR |= (buf<<8) & 0xff00;
+	LCD_GPIO->BRR  |= ((~buf)<<8) & 0xff00;	
+	
+	GPIO_SetBits(LCD_1602_RS_PORT, LCD_1602_RS_PIN);
+	GPIO_ReadOutputDataBit(LCD_1602_RW_PORT, LCD_1602_RW_PIN);
+	Delay(400);
+	GPIO_ResetBits(LCD_1602_EN_PORT, LCD_1602_EN_PIN);
+	
+}
+
+int Init_LCD1602()
+{
+	LCD1602_Cmd(0x38);
+	Delay(5);
+	LCD1602_Cmd(0x38);
+	Delay(5);
+	LCD1602_Cmd(0x38);
+	Delay(5);
+	LCD1602_Cmd(0x38);
+	LCD1602_Cmd(0x08);
+	LCD1602_Cmd(0x01);
+	return 1;
 }
 

@@ -45,8 +45,11 @@
 #define				LCD_1602_D7_PORT			GPIOB
 #define				LCD_1602_D7_PIN				GPIO_Pin_15
 
-#define				lCD_GPIO							GPIOB
-
+#define				LCD_GPIO							GPIOB
+#define				LCD_LOW_POWER_MODE		LCD1602_Cmd(0x08)
+#define				LCD_HIGH_POWER_MODE		LCD1602_Cmd(0x01)
+void LCD1602_SendDate(u8 buf);
+void LCD1602_Cmd(u8 buf);
 
 
 #endif
