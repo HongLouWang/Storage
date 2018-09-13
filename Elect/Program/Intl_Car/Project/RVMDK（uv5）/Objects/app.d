@@ -59,3 +59,4 @@
 .\objects\app.o: ..\..\User\Timer.h
 .\objects\app.o: ..\..\User\APP\wifi.h
 .\objects\app.o: ..\..\User\BSP\LCD1602.h
+.\objects\app.o: ..\..\User\Comu\SPI\bsp_spi.h

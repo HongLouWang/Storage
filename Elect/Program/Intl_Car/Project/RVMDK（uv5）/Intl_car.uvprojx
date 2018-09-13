@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS;..\..\Libraries\FWlib\inc;..\..\User;..\..\User\APP;..\..\User\BSP;..\..\User\BSP\led;..\..\User\uC-CPU;..\..\User\uC-CPU\ARM-Cortex-M3\RealView;..\..\User\uC-LIB;..\..\User\uCOS-III\Source;..\..\User\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;..\..\User\Comu\I2C;..\..\User\Comu\USART;..\..\User\Comm</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS;..\..\Libraries\FWlib\inc;..\..\User;..\..\User\APP;..\..\User\BSP;..\..\User\BSP\led;..\..\User\uC-CPU;..\..\User\uC-CPU\ARM-Cortex-M3\RealView;..\..\User\uC-LIB;..\..\User\uCOS-III\Source;..\..\User\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView;..\..\User\Comu\I2C;..\..\User\Comu\USART;..\..\User\Comm;..\..\User\Comu\SPI</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -890,6 +890,11 @@
               <FileName>bsp_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\User\Comu\USART\bsp_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Comu\SPI\bsp_spi.c</FilePath>
             </File>
           </Files>
         </Group>

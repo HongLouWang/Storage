@@ -38,3 +38,4 @@
 .\objects\config.o: ..\..\User\Timer.h
 .\objects\config.o: ..\..\User\APP\wifi.h
 .\objects\config.o: ..\..\User\BSP\LCD1602.h
+.\objects\config.o: ..\..\User\Comu\SPI\bsp_spi.h

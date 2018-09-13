@@ -11,6 +11,7 @@
 #include "Timer.h"
 #include "wifi.h"
 #include "LCD1602.h"
+#include "bsp_spi.h"
 
 
 #endif

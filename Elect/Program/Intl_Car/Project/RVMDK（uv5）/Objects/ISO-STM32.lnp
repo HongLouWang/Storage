@@ -63,6 +63,7 @@
 ".\objects\lcd1602.o"
 ".\objects\bsp_i2c.o"
 ".\objects\bsp_usart.o"
+".\objects\bsp_spi.o"
 ".\objects\config.o"
 ".\objects\timer.o"
 --library_type=microlib --strict --scatter ".\Objects\ISO-STM32.sct"
