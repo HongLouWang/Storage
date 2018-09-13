@@ -37,3 +37,4 @@
 .\objects\config.o: ..\..\User\Comm\Config.h
 .\objects\config.o: ..\..\User\Timer.h
 .\objects\config.o: ..\..\User\APP\wifi.h
+.\objects\config.o: ..\..\User\BSP\LCD1602.h

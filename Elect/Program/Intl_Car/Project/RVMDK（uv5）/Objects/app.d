@@ -51,3 +51,11 @@
 .\objects\app.o: ..\..\User\APP\os_cfg.h
 .\objects\app.o: ..\..\User\uCOS-III\Source\os_type.h
 .\objects\app.o: ..\..\User\uCOS-III\Ports\ARM-Cortex-M3\Generic\RealView\os_cpu.h
+.\objects\app.o: ..\..\User\Comm\Config.h
+.\objects\app.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app.o: ..\..\User\BSP\bsp_esp8266.h
+.\objects\app.o: ..\..\User\Comm\Config.h
+.\objects\app.o: ..\..\User\Timer.h
+.\objects\app.o: ..\..\User\APP\wifi.h
+.\objects\app.o: ..\..\User\BSP\LCD1602.h

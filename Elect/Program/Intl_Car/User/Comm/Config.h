@@ -10,6 +10,7 @@
 #include "bsp_esp8266.h"
 #include "Timer.h"
 #include "wifi.h"
+#include "LCD1602.h"
 
 
 #endif

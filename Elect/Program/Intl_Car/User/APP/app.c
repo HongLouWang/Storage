@@ -36,6 +36,7 @@
 */
 
 #include <includes.h>
+#include "Config.h"
 
 
 /*
@@ -50,8 +51,8 @@
 *********************************************************************************************************
 */
 
-static  OS_TCB   AppTaskStartTCB;
-static  OS_TCB	 AppTaskTimeClock;
+static  OS_TCB		AppTaskStartTCB;
+static 	OS_TCB		AppWiFiTCB;
 
 
 /*
@@ -61,7 +62,7 @@ static  OS_TCB	 AppTaskTimeClock;
 */
 
 static  CPU_STK  AppTaskStartStk[APP_TASK_START_STK_SIZE];
-static  CPU_STK	 APP_TASK_CLOCK_STK[APP_TASK_CLOCK];
+static  CPU_STK	 AppTaskWiFi[APP_TASK_WIFI_STK_SIZE];
 
 
 
@@ -73,8 +74,7 @@ static  CPU_STK	 APP_TASK_CLOCK_STK[APP_TASK_CLOCK];
 
 
 static  void  AppTaskStart  	(void *p_arg);
-
-static	void  AppClock				(void * p_arg);
+void AppWiFi();
 
 /*
 *********************************************************************************************************
@@ -91,25 +91,29 @@ static	void  AppClock				(void * p_arg);
 
 int  main (void)
 {
-    OS_ERR  err;
-
-    OSInit(&err);                                               /* Init uC/OS-III.                                      */
-
-    OSTaskCreate((OS_TCB     *)&AppTaskStartTCB,                /* Create the start task                                */
-                 (CPU_CHAR   *)"App Task Start",
-                 (OS_TASK_PTR ) AppTaskStart,
-                 (void       *) 0,
-                 (OS_PRIO     ) APP_TASK_START_PRIO,
-                 (CPU_STK    *)&AppTaskStartStk[0],
-                 (CPU_STK_SIZE) APP_TASK_CLOCK_STK_SIZE / 10,
-                 (CPU_STK_SIZE) APP_TASK_CLOCK_STK_SIZE,
-                 (OS_MSG_QTY  ) 5u,
-                 (OS_TICK     ) 0u,
-                 (void       *) 0,
-                 (OS_OPT      )(OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
-                 (OS_ERR     *)&err);
-
-    OSStart(&err);                                              /* Start multitasking (i.e. give control to uC/OS-III). */
+	OS_ERR err;	
+	
+	/* 初始化"uC/OS-III"内核 */  
+	OSInit(&err);	
+	
+	/*创建任务*/
+	OSTaskCreate((OS_TCB     *)&AppTaskStartTCB,              // 任务控制块指针          
+               (CPU_CHAR   *)"App Task Start",		          // 任务名称
+               (OS_TASK_PTR )AppTaskStart, 	                // 任务代码指针
+               (void       *)0,			                    	 	// 传递给任务的参数parg
+               (OS_PRIO     )APP_TASK_START_PRIO,			  		// 任务优先级
+               (CPU_STK    *)&AppTaskStartStk[0],	          // 任务堆栈基地址
+               (CPU_STK_SIZE)APP_TASK_START_STK_SIZE/10,	  // 堆栈剩余警戒线
+               (CPU_STK_SIZE)APP_TASK_START_STK_SIZE,		  	// 堆栈大小
+               (OS_MSG_QTY  )1u,			                      // 可接收的最大消息队列数
+               (OS_TICK     )0u,			                      // 时间片轮转时间
+               (void       *)0,			                    	  // 任务控制块扩展信息
+               (OS_OPT      )(OS_OPT_TASK_STK_CHK | 
+                              OS_OPT_TASK_STK_CLR),	     		// 任务选项
+               (OS_ERR     *)&err);		                   	  // 返回值
+	  
+  /* 启动多任务系统，控制权交给uC/OS-III */
+  OSStart(&err);  
 }
 
 
@@ -154,62 +158,42 @@ static  void  AppTaskStart (void *p_arg)
     CPU_IntDisMeasMaxCurReset();
 
 //Program Start
-			
-	OSTaskCreate((OS_TCB			  *)&AppTaskTimeClock,
-							 (CPU_CHAR			*)"CLOCK",
-							 (OS_TASK_PTR		 ) AppClock,
-							 (void					*)1,
-							 (OS_PRIO				 )APP_TASK_CLOCK,
-							 (CPU_STK    		*)&APP_TASK_CLOCK_STK[0],
-							 (CPU_STK_SIZE	 ) APP_TASK_CLOCK_STK_SIZE / 10,
-							 (CPU_STK_SIZE	 ) APP_TASK_CLOCK_STK_SIZE,
-							 (OS_MSG_QTY		 ) 10,
-							 (OS_TICK				 ) 10,
-							 (void					*) 0,
-							 (OS_OPT				 ) (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
-							 (OS_ERR				*)&err);
-							 
-								
-								
-	OSTaskDel( & AppTaskStartTCB, & err);
-
 	
 }
 
-void TmrCallback(OS_TMR *p_tmr, void *p_arg)
+static void AppTaskCreate(void)
 {
-	CPU_INT32U				cpu_clk_freq;
-	CPU_SR_ALLOC();
-	
-	
+	OS_ERR					err;
+	OSTaskCreate((OS_TCB						*)&AppWiFiTCB,
+							(CPU_CHAR					*)"AppTaskCreate WiFi Connect",
+							(OS_TASK_PTR			 )AppWiFi,
+							(void							*)0,
+							(OS_PRIO					 )APP_TASK_WIFI,
+							(CPU_STK					*)&AppTaskWiFi[0],
+							(CPU_STK_SIZE			 )APP_TASK_WIFI_STK_SIZE/10,
+							(CPU_STK_SIZE			 )APP_TASK_WIFI_STK_SIZE,
+							(OS_MSG_QTY				 )1,
+							(OS_TICK					 )0,
+							(void							*)0,
+							(OS_OPT						 )(OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
+							(OS_ERR						*)&err);
 }
 
-static void AppTaskTmr( void * p_arg)
+void AppWiFi()
 {
-	OS_ERR									err;
-	OS_TMR									my_tmr;
-	
-	(void)p_arg;
-	
-	OSTmrCreate((OS_TMR				*)&my_tmr,
-							(CPU_CHAR			*)"MySoftTimer",
-							(OS_TICK			 )1,
-							(OS_TICK			 )1,
-							(OS_OPT				 )OS_OPT_TMR_PERIODIC,
-							(OS_TMR_CALLBACK_PTR)TmrCallback,
-							(void					*)"Time Over!",
-							(OS_ERR				*)err);
-							
-	OSTmrStart	((OS_TMR		*)&my_tmr,
-							 (OS_ERR		*)err);
-							
-	//ts_start = OS_TS_GET();
-	
-}
+	OS_ERR err;
+	if(Init_WiFi())
+	{
+		if(Init_Server_Con(33))
+		{
+			OSTimeDly(100, OS_OPT_TIME_DLY, &err);
 
-static void AppClock(void * p_arg)
-{
-	
+		}
+	}
+	else
+	{
+		
+	}
 }
 
 

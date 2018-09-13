@@ -871,6 +871,11 @@
               <FileType>5</FileType>
               <FilePath>..\..\User\BSP\bsp_esp8266.h</FilePath>
             </File>
+            <File>
+              <FileName>LCD1602.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\BSP\LCD1602.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

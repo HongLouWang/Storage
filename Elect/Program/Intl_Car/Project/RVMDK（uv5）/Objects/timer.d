@@ -37,6 +37,7 @@
 .\objects\timer.o: ..\..\User\Comm\Config.h
 .\objects\timer.o: ..\..\User\Timer.h
 .\objects\timer.o: ..\..\User\APP\wifi.h
+.\objects\timer.o: ..\..\User\BSP\LCD1602.h
 .\objects\timer.o: ..\..\User\Timer.h
 .\objects\timer.o: ..\..\User\uCOS-III\Source\os.h
 .\objects\timer.o: ..\..\User\APP\os_cfg.h

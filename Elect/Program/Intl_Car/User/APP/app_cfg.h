@@ -48,7 +48,7 @@
 */
 
 #define  APP_TASK_START_PRIO                        2
-#define  APP_TASK_CLOCK															1
+#define	 APP_TASK_WIFI															33
 
 
 /*
@@ -59,7 +59,7 @@
 */
 
 #define  APP_TASK_START_STK_SIZE                    128
-#define	 APP_TASK_CLOCK_STK_SIZE										512
+#define	 APP_TASK_WIFI_STK_SIZE											128
 
 
 

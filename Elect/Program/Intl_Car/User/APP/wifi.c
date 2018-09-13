@@ -13,7 +13,7 @@ Return			 :						-1, Connect successfully, no unvarnishSend
 													-2, Connect successfully, unvarnishSend
 													-3, fail to Connect
 */
-int Init_WiFi()
+int Init_WiFi(void)
 {
 	static char ssid[120]  = {WiFi_SSID};
 	static char	pwd[120]   = {WiFi_Password};

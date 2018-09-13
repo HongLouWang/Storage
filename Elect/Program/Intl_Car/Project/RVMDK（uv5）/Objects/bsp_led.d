@@ -38,3 +38,4 @@
 .\objects\bsp_led.o: ..\..\User\Comm\Config.h
 .\objects\bsp_led.o: ..\..\User\Timer.h
 .\objects\bsp_led.o: ..\..\User\APP\wifi.h
+.\objects\bsp_led.o: ..\..\User\BSP\LCD1602.h
