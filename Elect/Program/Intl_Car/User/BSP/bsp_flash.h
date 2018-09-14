@@ -27,6 +27,11 @@
 #define SPIT_LONG_TIMEOUT         ((uint32_t)(10 * SPIT_FLAG_TIMEOUT))
 
 u8 SPI_FLASH_SendByte(u8 byte);
-
+void SPI_FLASH_WaitForWriteEnd(void);
+u8 SPI_FLASH_SendByte(u8 byte);
+u8 SPI_FLASH_ReadByte(void);
+void SPI_FLASH_WriteEnable(void);
+void SPI_FLASH_SectorErase(u32 SectorAddr);
+void SPI_FLASH_Init(void);
 
 #endif
