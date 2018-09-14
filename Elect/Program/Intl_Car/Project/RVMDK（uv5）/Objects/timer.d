@@ -39,6 +39,7 @@
 .\objects\timer.o: ..\..\User\APP\wifi.h
 .\objects\timer.o: ..\..\User\BSP\LCD1602.h
 .\objects\timer.o: ..\..\User\Comu\SPI\bsp_spi.h
+.\objects\timer.o: ..\..\User\BSP\bsp_flash.h
 .\objects\timer.o: ..\..\User\Timer.h
 .\objects\timer.o: ..\..\User\uCOS-III\Source\os.h
 .\objects\timer.o: ..\..\User\APP\os_cfg.h

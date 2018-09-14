@@ -39,6 +39,7 @@
 .\objects\bsp.o: ..\..\User\APP\wifi.h
 .\objects\bsp.o: ..\..\User\BSP\LCD1602.h
 .\objects\bsp.o: ..\..\User\Comu\SPI\bsp_spi.h
+.\objects\bsp.o: ..\..\User\BSP\bsp_flash.h
 .\objects\bsp.o: ..\..\User\BSP\bsp.h
 .\objects\bsp.o: ..\..\User\uC-CPU\ARM-Cortex-M3\RealView\cpu.h
 .\objects\bsp.o: ..\..\User\uC-CPU\cpu_def.h

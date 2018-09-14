@@ -39,3 +39,4 @@
 .\objects\bsp_spi.o: ..\..\User\APP\wifi.h
 .\objects\bsp_spi.o: ..\..\User\BSP\LCD1602.h
 .\objects\bsp_spi.o: ..\..\User\Comu\SPI\bsp_spi.h
+.\objects\bsp_spi.o: ..\..\User\BSP\bsp_flash.h

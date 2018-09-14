@@ -39,3 +39,4 @@
 .\objects\bsp_esp8266.o: ..\..\User\APP\wifi.h
 .\objects\bsp_esp8266.o: ..\..\User\BSP\LCD1602.h
 .\objects\bsp_esp8266.o: ..\..\User\Comu\SPI\bsp_spi.h
+.\objects\bsp_esp8266.o: ..\..\User\BSP\bsp_flash.h
