@@ -79,7 +79,7 @@ void SPI_FLASH_BulkRease(void)
 	
 	SPI_FLASH_SendByte(W25X_ChipErase);
 	
-	SPI_FLASH_WaitForWriteEnd();
+	SPI_FLASH_WaitForWriteEnd(); 
 }
 
 /*
