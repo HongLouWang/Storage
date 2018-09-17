@@ -40,3 +40,5 @@
 .\objects\wifi.o: ..\..\User\BSP\LCD1602.h
 .\objects\wifi.o: ..\..\User\Comu\SPI\bsp_spi.h
 .\objects\wifi.o: ..\..\User\BSP\bsp_flash.h
+.\objects\wifi.o: ..\..\User\APP\App_Config.h
+.\objects\wifi.o: ..\..\User\BSP\bsp_motor.h

@@ -40,3 +40,5 @@
 .\objects\bsp_esp8266.o: ..\..\User\BSP\LCD1602.h
 .\objects\bsp_esp8266.o: ..\..\User\Comu\SPI\bsp_spi.h
 .\objects\bsp_esp8266.o: ..\..\User\BSP\bsp_flash.h
+.\objects\bsp_esp8266.o: ..\..\User\APP\App_Config.h
+.\objects\bsp_esp8266.o: ..\..\User\BSP\bsp_motor.h

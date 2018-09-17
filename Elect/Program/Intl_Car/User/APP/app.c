@@ -53,6 +53,7 @@
 
 static  OS_TCB		AppTaskStartTCB;
 static 	OS_TCB		AppWiFiTCB;
+static  OS_TCB		AppWiFiTestTCB;
 
 
 /*
@@ -63,6 +64,7 @@ static 	OS_TCB		AppWiFiTCB;
 
 static  CPU_STK  AppTaskStartStk[APP_TASK_START_STK_SIZE];
 static  CPU_STK	 AppTaskWiFi[APP_TASK_WIFI_STK_SIZE];
+static  CPU_STK	 AppTaskWiFiTest[APP_TASK_WIFI_TEST_STK_SIZE];
 
 
 
@@ -74,6 +76,7 @@ static  CPU_STK	 AppTaskWiFi[APP_TASK_WIFI_STK_SIZE];
 
 
 static  void  AppTaskStart  	(void *p_arg);
+int AppWiFiTest();
 void AppWiFi();
 
 /*
@@ -177,25 +180,54 @@ static void AppTaskCreate(void)
 							(void							*)0,
 							(OS_OPT						 )(OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
 							(OS_ERR						*)&err);
+	
+	OSTaskCreate((OS_TCB					*)&AppWiFiTestTCB,
+							(CPU_CHAR					*)"WiFIConnection",
+							(OS_TASK_PTR			 )AppWiFiTest,
+							(void							*)0,
+							(OS_PRIO					 )APP_TASK_WIFI_TEST_STK_SIZE,
+							(CPU_STK					*)&AppTaskWiFiTest[0],
+							(CPU_STK_SIZE			 )APP_TASK_WIFI_TEST_STK_SIZE/10,
+							(CPU_STK_SIZE			 )APP_TASK_WIFI_TEST_STK_SIZE,
+							(OS_MSG_QTY				 )1,
+							(OS_TICK					 )0,
+							(void							*)0,
+							(OS_OPT						 )(OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR),
+							(OS_ERR						*)&err);
 }
 
 void AppWiFi()
 {
-	OS_ERR err;
-	if(Init_WiFi())
-	{
-		if(Init_Server_Con(33))
-		{
-			OSTimeDly(100, OS_OPT_TIME_DLY, &err);
-
-		}
-	}
-	else
-	{
-		
-	}
+	Init_WiFi();
+	Init_Server_Con(Default_Connect_ID);
+	AppWiFiTest(10);
+	
 }
 
+int AppWiFiTest(int waittime)
+{
+	OS_ERR	ERR;
+	char  * tmp;
+	int i;
+	
+	ESP8266_SendString(0,"TESTCONNECTION",14,Default_Connect_ID);
+	for(i = 1; i <= waittime; i++)
+	{
+		tmp = ESP8266_ReceiveString(0);
+		if(tmp == &*"TESTCONNECTION")
+		{
+			i = waittime;
+			return 1;
+		}
+	}
+	return 0;
+	OSTaskSuspend(0,&ERR);
+}
+
+void AppCarMove()
+{
+	
+}
 
 
 

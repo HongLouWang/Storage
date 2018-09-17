@@ -61,3 +61,5 @@
 .\objects\app.o: ..\..\User\BSP\LCD1602.h
 .\objects\app.o: ..\..\User\Comu\SPI\bsp_spi.h
 .\objects\app.o: ..\..\User\BSP\bsp_flash.h
+.\objects\app.o: ..\..\User\APP\App_Config.h
+.\objects\app.o: ..\..\User\BSP\bsp_motor.h

@@ -13,6 +13,7 @@
 #include "LCD1602.h"
 #include "bsp_spi.h"
 #include "bsp_flash.h"
-
+#include "App_Config.h"
+#include "bsp_motor.h"
 
 #endif

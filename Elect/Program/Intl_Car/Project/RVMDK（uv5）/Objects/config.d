@@ -40,3 +40,5 @@
 .\objects\config.o: ..\..\User\BSP\LCD1602.h
 .\objects\config.o: ..\..\User\Comu\SPI\bsp_spi.h
 .\objects\config.o: ..\..\User\BSP\bsp_flash.h
+.\objects\config.o: ..\..\User\APP\App_Config.h
+.\objects\config.o: ..\..\User\BSP\bsp_motor.h

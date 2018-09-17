@@ -25,7 +25,7 @@
 #define		FLASH_SPI_MISO_PIN												GPIO_Pin_1						//DI
 
 //				SPI2																			IRControl
-/*
+
 #define		FLASH_SPI2																SPI2	
 #define		FLASH_SPI2_APBxClockFUN										RCC_APB1PeriphClockCmd
 #define		FLASH_SPI2_CLK														RCC_APB1Periph_SPI2
@@ -47,7 +47,7 @@
 #define		FLASH_SPI2_MISO_CLK												RCC_APB1Periph_GPIOD
 #define		FLASH_SPI2_MISO_PORT											GPIOD
 #define		FLASH_SPI2_MISO_PIN												GPIO_Pin_13						
-*/
+
 
 
 
