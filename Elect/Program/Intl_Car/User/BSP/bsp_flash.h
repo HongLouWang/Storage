@@ -3,6 +3,9 @@
 
 #include "Config.h"
 
+#define SPI_FLASH_PageSize              256
+#define SPI_FLASH_PerWritePageSize      256
+
 #define W25X_WriteEnable		      0x06 
 #define W25X_WriteDisable		      0x04 
 #define W25X_ReadStatusReg		    0x05 
@@ -30,8 +33,11 @@ u8 SPI_FLASH_SendByte(u8 byte);
 void SPI_FLASH_WaitForWriteEnd(void);
 u8 SPI_FLASH_SendByte(u8 byte);
 u8 SPI_FLASH_ReadByte(void);
+u16 SPI_FLASH_SendHalfWord(u16 HalfWord);
 void SPI_FLASH_WriteEnable(void);
 void SPI_FLASH_SectorErase(u32 SectorAddr);
 void SPI_FLASH_Init(void);
+void SPI_Flash_PowerDown(void);
+void SPI_Flash_WAKEUP(void);
 
 #endif

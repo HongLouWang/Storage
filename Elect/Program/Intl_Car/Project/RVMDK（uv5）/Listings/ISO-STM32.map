@@ -1137,11 +1137,20 @@ Section Cross References
     lcd1602.o(i.LCD1602_SendDate) refers to timer.o(i.Delay) for Delay
     lcd1602.o(i.LCD1602_SendDate) refers to stm32f10x_gpio.o(i.GPIO_ReadOutputDataBit) for GPIO_ReadOutputDataBit
     lcd1602.o(i.LCD1602_SendDate) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
+    bsp_flash.o(i.SPI_FLASH_BufferRead) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_FLASH_BufferWrite) refers to bsp_flash.o(i.SPI_FLASH_PageWrite) for SPI_FLASH_PageWrite
+    bsp_flash.o(i.SPI_FLASH_BulkRease) refers to bsp_flash.o(i.SPI_FLASH_WriteEnable) for SPI_FLASH_WriteEnable
+    bsp_flash.o(i.SPI_FLASH_BulkRease) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_FLASH_BulkRease) refers to bsp_flash.o(i.SPI_FLASH_WaitForWriteEnd) for SPI_FLASH_WaitForWriteEnd
     bsp_flash.o(i.SPI_FLASH_Init) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     bsp_flash.o(i.SPI_FLASH_Init) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
     bsp_flash.o(i.SPI_FLASH_Init) refers to stm32f10x_spi.o(i.SPI_Init) for SPI_Init
     bsp_flash.o(i.SPI_FLASH_Init) refers to stm32f10x_spi.o(i.SPI_Cmd) for SPI_Cmd
+    bsp_flash.o(i.SPI_FLASH_PageWrite) refers to bsp_flash.o(i.SPI_FLASH_WriteEnable) for SPI_FLASH_WriteEnable
+    bsp_flash.o(i.SPI_FLASH_PageWrite) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_FLASH_PageWrite) refers to bsp_flash.o(i.SPI_FLASH_WaitForWriteEnd) for SPI_FLASH_WaitForWriteEnd
     bsp_flash.o(i.SPI_FLASH_ReadByte) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_FLASH_ReadID) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
     bsp_flash.o(i.SPI_FLASH_SectorErase) refers to bsp_flash.o(i.SPI_FLASH_WriteEnable) for SPI_FLASH_WriteEnable
     bsp_flash.o(i.SPI_FLASH_SectorErase) refers to bsp_flash.o(i.SPI_FLASH_WaitForWriteEnd) for SPI_FLASH_WaitForWriteEnd
     bsp_flash.o(i.SPI_FLASH_SectorErase) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
@@ -1149,8 +1158,15 @@ Section Cross References
     bsp_flash.o(i.SPI_FLASH_SendByte) refers to stm32f10x_spi.o(i.SPI_I2S_SendData) for SPI_I2S_SendData
     bsp_flash.o(i.SPI_FLASH_SendByte) refers to stm32f10x_spi.o(i.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
     bsp_flash.o(i.SPI_FLASH_SendByte) refers to bsp_flash.o(.data) for SPITimeout
+    bsp_flash.o(i.SPI_FLASH_SendHalfWord) refers to stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus) for SPI_I2S_GetFlagStatus
+    bsp_flash.o(i.SPI_FLASH_SendHalfWord) refers to stm32f10x_spi.o(i.SPI_I2S_SendData) for SPI_I2S_SendData
+    bsp_flash.o(i.SPI_FLASH_SendHalfWord) refers to stm32f10x_spi.o(i.SPI_I2S_ReceiveData) for SPI_I2S_ReceiveData
+    bsp_flash.o(i.SPI_FLASH_SendHalfWord) refers to bsp_flash.o(.data) for SPITimeout
+    bsp_flash.o(i.SPI_FLASH_StartReadSequence) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
     bsp_flash.o(i.SPI_FLASH_WaitForWriteEnd) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
     bsp_flash.o(i.SPI_FLASH_WriteEnable) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_Flash_PowerDown) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
+    bsp_flash.o(i.SPI_Flash_WAKEUP) refers to bsp_flash.o(i.SPI_FLASH_SendByte) for SPI_FLASH_SendByte
     bsp_i2c.o(i.I2C_EE_Config) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     bsp_i2c.o(i.I2C_EE_Config) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
     bsp_i2c.o(i.I2C_EE_Config) refers to stm32f10x_i2c.o(i.I2C_Init) for I2C_Init
@@ -2126,12 +2142,21 @@ Removing Unused input sections from the image.
     Removing lcd1602.o(i.Init_LCD1602), (60 bytes).
     Removing lcd1602.o(i.LCD1602_Cmd), (128 bytes).
     Removing lcd1602.o(i.LCD1602_SendDate), (128 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_BufferRead), (60 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_BufferWrite), (288 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_BulkRease), (18 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_Init), (176 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_PageWrite), (74 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_ReadByte), (10 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_ReadID), (58 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_SectorErase), (46 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_SendByte), (108 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_SendHalfWord), (84 bytes).
+    Removing bsp_flash.o(i.SPI_FLASH_StartReadSequence), (34 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_WaitForWriteEnd), (30 bytes).
     Removing bsp_flash.o(i.SPI_FLASH_WriteEnable), (10 bytes).
+    Removing bsp_flash.o(i.SPI_Flash_PowerDown), (10 bytes).
+    Removing bsp_flash.o(i.SPI_Flash_WAKEUP), (10 bytes).
     Removing bsp_flash.o(.data), (4 bytes).
     Removing bsp_i2c.o(i.I2C_EE_Config), (140 bytes).
     Removing bsp_usart.o(i.NVIC_Configuration), (38 bytes).
@@ -2149,7 +2174,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-705 unused section(s) (total 56467 bytes) removed from the image.
+714 unused section(s) (total 57103 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2938,18 +2963,18 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000130   Data   RO            3    RESET               startup_stm32f10x_hd.o
-    0x08000130   0x08000130   0x00000000   Code   RO         5661  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000130   0x08000130   0x00000004   Code   RO         5929    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x08000134   0x08000134   0x00000004   Code   RO         5932    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x08000138   0x08000138   0x00000000   Code   RO         5934    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x08000138   0x08000138   0x00000000   Code   RO         5936    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x08000138   0x08000138   0x00000008   Code   RO         5937    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO         5939    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
-    0x08000140   0x08000140   0x00000000   Code   RO         5941    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
-    0x08000140   0x08000140   0x00000004   Code   RO         5930    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000130   0x08000130   0x00000000   Code   RO         5715  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000130   0x08000130   0x00000004   Code   RO         5983    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x08000134   0x08000134   0x00000004   Code   RO         5986    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x08000138   0x08000138   0x00000000   Code   RO         5988    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x08000138   0x08000138   0x00000000   Code   RO         5990    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x08000138   0x08000138   0x00000008   Code   RO         5991    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO         5993    .ARM.Collect$$$$0000000D  mc_w.l(entry10a.o)
+    0x08000140   0x08000140   0x00000000   Code   RO         5995    .ARM.Collect$$$$0000000F  mc_w.l(entry11a.o)
+    0x08000140   0x08000140   0x00000004   Code   RO         5984    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x08000144   0x08000144   0x00000024   Code   RO            4    .text               startup_stm32f10x_hd.o
     0x08000168   0x08000168   0x00000034   Code   RO         3602    .text               cpu_a.o
-    0x0800019c   0x0800019c   0x00000024   Code   RO         5959    .text               mc_w.l(init.o)
+    0x0800019c   0x0800019c   0x00000024   Code   RO         6013    .text               mc_w.l(init.o)
     0x080001c0   0x080001c0   0x00000084   Code   RO         5201    CODE                os_cpu_a.o
     0x08000244   0x08000244   0x00000034   Code   RO         3172    i.AppTaskStart      app.o
     0x08000278   0x08000278   0x00000010   Code   RO         5282    i.BSP_CPU_ClkFreq   bsp.o
@@ -3090,14 +3115,14 @@ Memory Map of the image
     0x08004bc8   0x08004bc8   0x000000e0   Code   RO           25    i.SetSysClockTo72   system_stm32f10x.o
     0x08004ca8   0x08004ca8   0x00000060   Code   RO           27    i.SystemInit        system_stm32f10x.o
     0x08004d08   0x08004d08   0x00000004   Code   RO         3116    i.UsageFault_Handler  stm32f10x_it.o
-    0x08004d0c   0x08004d0c   0x0000000e   Code   RO         5971    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08004d1a   0x08004d1a   0x00000002   Code   RO         5972    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08004d1c   0x08004d1c   0x0000000e   Code   RO         5973    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08004d0c   0x08004d0c   0x0000000e   Code   RO         6025    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08004d1a   0x08004d1a   0x00000002   Code   RO         6026    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08004d1c   0x08004d1c   0x0000000e   Code   RO         6027    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x08004d2a   0x08004d2a   0x00000002   PAD
     0x08004d2c   0x08004d2c   0x00000060   Code   RO         3174    i.main              app.o
     0x08004d8c   0x08004d8c   0x000000a4   Data   RO         4070    .constdata          os_cfg_app.o
     0x08004e30   0x08004e30   0x0000016c   Data   RO         4338    .constdata          os_dbg.o
-    0x08004f9c   0x08004f9c   0x00000020   Data   RO         5969    Region$$Table       anon$$obj.o
+    0x08004f9c   0x08004f9c   0x00000020   Data   RO         6023    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08004fbc, Size: 0x000090f8, Max: 0x00010000, ABSOLUTE)
