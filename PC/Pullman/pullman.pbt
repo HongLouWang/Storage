@@ -1,9 +1,7 @@
 Save Format v3.0(19990112)
 @begin Projects
- 0 "1&p_pullman_exe&pullman.pbl";
- 1 "1&p_pullman_wsproxy_visa&pullman_visa_json.pbl";
 @end;
 appname "pullman";
 applib "pullman.pbl";
-LibList "pullman.pbl;pullman_photo.pbl;pullman_oss.pbl;pullman_dw.pbl;pullman_shief_position.pbl;pullman_hardware.pbl;pullman_visa_json.pbl;visa_json.pbl";
+LibList "pullman.pbl;pullman_photo.pbl;pullman_oss.pbl;pullman_dw.pbl;pullman_shief_position.pbl;pullman_hardware.pbl;pullman_visa_json.pbl;visa_json.pbl;summary.pbl";
 type "pb";

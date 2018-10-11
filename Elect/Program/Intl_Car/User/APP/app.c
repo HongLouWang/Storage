@@ -226,7 +226,18 @@ int AppWiFiTest(int waittime)
 
 void AppCarMove()
 {
-	
+	int a = 1, b = 2, c, FLAG = 0;
+	for (int i = 3; i <=12; i++)
+	{
+		if(FLAG == 0)
+		{
+			//Êä³ö
+		}
+		c = a+b;
+		a = b;
+		b = c;
+		//ÔÙÊä³ö
+	}
 }
 
 

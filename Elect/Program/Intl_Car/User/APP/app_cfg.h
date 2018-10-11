@@ -61,7 +61,7 @@
 
 #define  APP_TASK_START_STK_SIZE                    128
 #define	 APP_TASK_WIFI_STK_SIZE											128
-#define	 APP_TASK_WIFI_TEST_STK_SIZE											128
+#define	 APP_TASK_WIFI_TEST_STK_SIZE								128
 
 
 /*
