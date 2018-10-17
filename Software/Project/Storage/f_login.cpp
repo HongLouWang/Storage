@@ -1,6 +1,10 @@
 #include "database.h"
 #include "f_login.h"
 #include <QMessageBox>
+#include "userinfo.h"
+#include <QVariant>
+
+
 
 bool MySQL::login(QString name, QString pass)
 {
@@ -13,7 +17,7 @@ bool MySQL::login(QString name, QString pass)
     {
         return false;
     }
-
+    ID = query->value(0).toInt();
     return true;
 
 }
@@ -34,3 +38,16 @@ void MySQL::init_database()
 
 }
 
+void MySQL::getuserinfo()
+{
+    QString str = QString("Select Username, Password, Firstname, Lastname, Phone, Sex from stuff where ID = '%1'").arg(ID);
+    query = new QSqlQuery;
+    query->exec(str);
+    Username = query->value("Username").toString();
+    Password = query->value("Password").toString();
+    Firstname = query->value("Firstname").toString();
+    Lastname = query->value("Lastname").toString();
+    Phone = query->value("Phone").toString();
+    Sex = query->value("Sex").toString();
+    //Username =
+}

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSqlTableModel>
 #include "controlpannel.h"
+//#include "qmail.h"
 
 namespace Ui {
 class Pullman_Main;
@@ -19,6 +20,8 @@ public:
     void fetchdata();
     void p_lock();
     void p_unlock();
+    //void qmail::Init_Mail(QWidget *m_parent);
+
 
 private slots:
     void on_pushButton_clicked();
@@ -31,6 +34,7 @@ private:
     Ui::Pullman_Main *ui;
     QSqlTableModel *model;
     ControlPannel *p_controlpannel;
+
 };
 
 

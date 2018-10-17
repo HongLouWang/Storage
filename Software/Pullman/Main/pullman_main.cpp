@@ -5,10 +5,17 @@
 #include <QSqlTableModel>
 #include "p_fetchdata.h"
 #include "f_login.h"
+#include "qmail.h"
+#include "shief.h"
 
+shief p_main_shief;
 MySQL N;
 int FLAG_LOCK;
 Pullman_Main p_main;
+qmail q_mail;
+
+
+
 
 Pullman_Main::Pullman_Main(QWidget *parent) :
     QDialog(parent),
@@ -20,6 +27,9 @@ Pullman_Main::Pullman_Main(QWidget *parent) :
     ui->tabWidget->setTabText(1,"Shief #2");
     ui->tabWidget->setTabText(2,"Shief #3");
     fetchdata();
+    q_mail.Init_Mail(this);
+    p_main_shief.getshiefpostable();
+    //qmail::Init_Mail(this);
 }
 
 Pullman_Main::~Pullman_Main()
@@ -30,7 +40,7 @@ Pullman_Main::~Pullman_Main()
 void Pullman_Main::on_pushButton_clicked()
 {
    N.SQLCA.close();
-   qApp->exit();
+   //qApp->exit();
 }
 
 void Pullman_Main::on_pushButton_3_clicked()
@@ -51,7 +61,6 @@ void Pullman_Main::on_pushButton_2_clicked()
         FLAG_LOCK = 0;
     }
 }
-
 
 /*
 Function:   fetchdata

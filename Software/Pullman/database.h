@@ -14,8 +14,10 @@ class MySQL
 public:
     MySQL();
     bool login(QString name, QString pass);
-    void MySQL::init_database();
+    void init_database();
+    void getuserinfo();
     QSqlDatabase SQLCA = QSqlDatabase::addDatabase("QMYSQL");
+
 private:
 
     QSqlQuery *query;

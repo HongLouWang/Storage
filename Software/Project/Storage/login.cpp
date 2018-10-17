@@ -3,6 +3,12 @@
 #include "database.h"
 #include "f_login.h"
 #include <QMessageBox>
+#include <QFile>
+#include <QTextCodec>
+#include "log.h"
+#include <QString>
+
+//extern int log();
 
 MySQL::MySQL()
 {
@@ -16,6 +22,20 @@ Login::Login(QWidget *parent) :
 {
     ui->setupUi(this);
     M.init_database();
+
+    QString S_Username;
+
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    //QTextCodec::setCodecForCStrings(codec);
+    QFile file("/pullman/Config.txt");
+    while(!file.atEnd())
+    {
+        QByteArray line = file.readLine();
+        QString str(line);
+        S_Username = str.mid(str.indexOf("S_Username = "), (str.replace(0, 13, "")).indexOf(" "));
+        ui->lineEdit->setText(S_Username);
+    }
+
 }
 
 Login::~Login()
@@ -35,7 +55,9 @@ void Login::on_pushButton_clicked()
     }
     else
     {
-        p_main.open();
+        p_main->open();
+        M.getuserinfo();
+        log("LOGIN");
         this->close();
     }
 }
